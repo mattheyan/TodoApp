@@ -61,6 +61,19 @@ Exo-model declaration
 })
 
 @*
+Miscellaneous scripts
+*@
+
+<script type="text/javascript">
+	$exoweb({
+		contextReady: function (context) {
+			// Automatically update User.CurrentTime 
+			window.setInterval(function () { context.model.user.set_CurrentTime(new Date(Date.now())); }, 20000);
+		}
+	});
+</script>
+
+@*
 Main board interface
 *@
 
@@ -87,7 +100,7 @@ Main board interface
 						<div class="board-list-item-text">
 							<span>{# Description}</span>
 						</div>
-						<div class="board-list-item-age-description">Item Age Description (eg, one minute ago)</div>
+						<div class="board-list-item-age-description">{# AgeDescription}</div>
 						<span class="board-list-item-priority"></span>
 						<a class="board-list-deleteitem" href="#" onclick="return false;"></a>
 					</div></div></div>
