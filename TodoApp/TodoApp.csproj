@@ -134,5 +134,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="C:\Users\matthewb\Code\Github\TodoApp\packages\Exo.1.0.0\tools\Exo.targets" />
+  <Import Project="$(SolutionDir)\packages\Exo.1.0.0\tools\Exo.targets" />
 </Project>
