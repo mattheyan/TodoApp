@@ -23,7 +23,12 @@ $(document.documentElement).on("click", ".board-list-item", function() {
 	// Set up commands to respond to button clicks
 	$dialog.dialogCommands({
 		ok: function() {
-			context.server.enableSave(item);
+			if (item.meta.conditions().length === 0) {
+				context.server.enableSave(item);
+			}
+			else {
+				return false;
+			}
 		},
 		cancel: function() {
 			context.server.rollback(checkpoint, function() {

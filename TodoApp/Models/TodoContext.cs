@@ -9,6 +9,8 @@ namespace TodoApp.Models
 {
 	public class TodoContext : DbContext
 	{
+		static IRuleProvider annotationRules = new AnnotationsRuleProvider(typeof(List).Assembly);
+
 		public DbSet<List> Lists { get; set; }
 		public DbSet<User> Users { get; set; }
 		public DbSet<Priority> Priorities { get; set; }
