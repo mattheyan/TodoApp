@@ -13,6 +13,7 @@
 <script src="@Url.Content("~/scripts/board-styles.js")"></script>
 <script src="@Url.Content("~/scripts/board-resize.js")"></script>
 <script src="@Url.Content("~/scripts/board-list-additem.js")"></script>
+<script src="@Url.Content("~/scripts/board-autosave.js")"></script>
 }
 
 @*
@@ -32,6 +33,12 @@ Main board interface
 	<div class="board-title">
 		<span class="board-user">{# Name}</span>
 		<a class="board-addlist" href="#" onclick="return false;">Add a list..</a>
+		<span class="board-status">
+			<span class="board-server-working">Communicating with the server...</span>
+			<span class="board-server-success">Success</span>
+			<span class="board-server-failure">An error occurred!</span>
+			<a href="#" onclick="return false;">Try again</a>
+		</span>
 	</div>
 	<div class="sys-template board-background" sys:attach="dataview" dataview:data="{~ Lists, transform=orderBy('Sequence') }">
 		<div class="board-list">
