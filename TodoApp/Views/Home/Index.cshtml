@@ -15,7 +15,27 @@
 <script src="@Url.Content("~/scripts/board-list-additem.js")"></script>
 <script src="@Url.Content("~/scripts/board-autosave.js")"></script>
 <script src="@Url.Content("~/scripts/board-sorting.js")"></script>
+<script src="@Url.Content("~/scripts/board-list-deleteitem.js")"></script>
 }
+
+@*
+Re-sequencing
+*@
+
+<script type="text/javascript">
+
+	$extend("List", function() {
+		new ExoWeb.Model.Rule(List.meta, {
+			onChangeOf: "Items",
+			execute: function(list) {
+				$transform(list.get_Items()).orderBy('Sequence').forEach(function(item, index) {
+					item.set_Sequence(index);
+				});
+			}
+		});
+	});
+
+</script>
 
 @*
 Exo-model declaration
