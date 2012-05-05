@@ -1,0 +1,48 @@
+﻿.board{width:100%; height:100%;}
+.board-title {padding:8px 3px; font-size:x-large;}
+.board-user {padding:0 8px 8px 3px; font-weight:bold; font-size:large;}
+/*.board-status {display:none;}*/
+.board-server-working, .board-server-success, .board-server-failure {display:none; font-size:small; margin-left:15px;}
+.board-server-working {padding-left:20px; background:url(loading.gif) no-repeat 0 0;}
+.board-server-success {color:#060;}
+.board-server-failure {color:#f00;}
+.board-status a {display:none;}
+.board-background {width:100%; height:500px; background-color:#257;}
+.board-list {float:left; margin:1% 0 1% 10px; width:200px; background-color:#e0e0e0; max-height:420px; overflow:auto;}
+.board-list-title {padding:5px;}
+.board-list-title strong {font-weight:bolder; padding-left:25px; background-image:url(list-20x20.gif); background-position:left; background-repeat:no-repeat;}
+.board-list-content {margin:5px; min-height:20px;}
+.board-list-item {margin-bottom:5px; border:1px solid #c0c0c0; background:#fff; position:relative; cursor:pointer;}
+/*.board-list-item-focus.board-list-item {border-color:#257;}*/
+.board-list-item-sequence {display:none;}
+.board-list-item-text {padding:5px; color:#333;}
+.board-list-item-age-description {margin:5px; font-size:x-small; font-style:italic; color:#999; margin-top:0px;}
+.board-addlist {font-size:small; margin-left:5px;}
+.board-list-additem {margin:5px; padding:5px 8px;}
+.board-list-additem a {color:#888; text-decoration:none;}
+.board-list-additem:hover {background:#c0c0c0; cursor:pointer;}
+.board-list-additem:hover a {color:#333; text-decoration:underline;}
+.board-list-additem input[type=text] {display:none;}
+.board-deletelist {float:right;}
+.board-deletelist, .board-list-deleteitem {background:url(delete.png) no-repeat scroll 0 0; cursor:pointer; height:16px; width:16px;}
+.board-list-deleteitem {position:absolute; right:0; top:6px;}
+.board-deletelist-focus, .board-list-deleteitem-focus {background:url(delete-focus.png) no-repeat scroll 0 0;}
+
+.board-addlist-dialog .dialog-content input[type=text] {width:250px;}
+.board-list-edititem-dialog .dialog-content > div {margin-bottom:15px;}
+.board-list-edititem-dialog .dialog-content input[type=text] {width:345px;}
+.board-list-edititem-dialog .dialog-content input[type=text].datepicker {width:90px;}
+
+.High .board-list-item {border:1px solid #f88;}
+.Low .board-list-item {background:#f0f0f0;}
+.High .board-list-item-text {background:url(high-priority.png) no-repeat scroll 3px 7px; padding-left:18px;}
+/*.Low .board-list-item-text {background:url(low-priority.png) no-repeat scroll 3px 7px; padding-left:18px;}*/
+/*.High .board-list-item .board-list-item-priority {background:url(high-priority.png) no-repeat scroll 0 0; right:0; top:24px; height:16px; position:absolute; width:18px;}*/
+.High .board-list-item .board-list-item-priority {right:0; top:24px; height:16px; position:absolute; width:18px;}
+.Medium .board-list-item .board-list-item-priority {right:0; top:24px; height:16px; position:absolute; width:18px;}
+.Low .board-list-item .board-list-item-priority {background:url(low-priority.png) no-repeat scroll 0 0; right:0; top:24px; height:16px; position:absolute; width:18px;}
+
+.ui-state-highlight {margin-bottom:5px;}
+
+.dialog-footer input {color:#444; height: 30px; background-image: -webkit-linear-gradient(top, white 0%, #F3F3F3 100%); border-radius: 3px 3px 3px 3px; border-color: #CECECE; border-width: 1px; font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; min-width:100px; line-height: 18px; padding: 3px; }
+.dialog-footer input:hover {color:white; background-image: -webkit-linear-gradient(top, #2478A8 0%, #1B5A7E 100%); border-color: #1F6993; }

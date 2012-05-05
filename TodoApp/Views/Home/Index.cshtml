@@ -1,0 +1,47 @@
+﻿@model TodoApp.Models.User
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Index";
+}
+
+@section stylesheet {
+	<link rel="stylesheet" href="@Url.Content("~/content/board.css")">
+}
+
+@section scriptReferences {
+<script src="@Url.Content("~/scripts/board-styles.js")"></script>
+<script src="@Url.Content("~/scripts/board-resize.js")"></script>
+}
+
+@*
+Main board interface
+*@
+
+<div class="board">
+	<div class="board-title">
+		<span class="board-user">User Name</span>
+		<a class="board-addlist" href="#" onclick="return false;">Add a list..</a>
+	</div>
+	<div class="board-background">
+		<div class="board-list">
+			<div class="board-list-title">
+				<strong>List Name</strong>
+				<span class="board-deletelist"></span>
+			</div>
+			<div class="board-list-content sortable">
+				<div sys:class="High">
+					<div class="board-list-item">
+						<div class="board-list-item-text">
+							<span>Item Description</span>
+						</div>
+						<div class="board-list-item-age-description">Item Age Description (eg, one minute ago)</div>
+						<span class="board-list-item-priority"></span>
+						<a class="board-list-deleteitem" href="#" onclick="return false;"></a>
+					</div></div></div>
+			<div class="board-list-additem">
+				<input type="text" style="display:none;" value="" />
+				<a href="#" onclick="return false;">Add an item...</a></div>
+		</div>
+	</div>
+</div>
