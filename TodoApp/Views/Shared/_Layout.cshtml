@@ -21,6 +21,41 @@
 	<script src="@Url.Content("~/scripts/exoweb-jquery.dialog.js")"></script>
 	<script src="@Url.Content("~/scripts/jquery.corner.js")"></script>
 	@RenderSection("scriptReferences", required: false)
+	<script type="text/javascript">
+		$exoweb({
+			init: function () {
+				ExoWeb.UI.Template.load('@Url.Content("~/scripts/exoweb-templates.htm")');
+			}
+		});
+
+		$(function () {
+			function createDatePicker() {
+				$(this).datepicker({
+					minDate: new Date('1/1/0001'),
+					maxDate: new Date('12/31/9999'),
+					yearRange: '-110:+50',
+					duration: 0,
+					dateFormat: 'm/d/yy',
+					showOn: 'button',
+					changeYear: true,
+					changeMonth: true,
+					onSelect: function (val, control) {
+						// jquery trigger doesn't seem to raise the event
+						// properly, so raise it here
+						var el = $(this).get(0);
+						if (el.dispatchEvent) {
+							var evt = document.createEvent("MutationEvents");
+							evt.initEvent("change", false, true);
+							el.dispatchEvent(evt);
+						}
+						else if (el.fireEvent) { el.fireEvent("onchange"); }
+					}
+				});
+			}
+
+			$("input.datepicker:bound").ever(createDatePicker);
+		});
+	</script>
 </head>
 <body xmlns:sys="javascript:Sys"
 	xmlns:dataview="javascript:Sys.UI.DataView"

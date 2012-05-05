@@ -125,6 +125,7 @@
     <Content Include="Scripts\board-autosave.js" />
     <Content Include="Scripts\board-list-additem.js" />
     <Content Include="Scripts\board-list-deleteitem.js" />
+    <Content Include="Scripts\board-list-edititem.js" />
     <Content Include="Scripts\board-resize.js" />
     <Content Include="Scripts\board-sorting.js" />
     <Content Include="Scripts\board-styles.js" />

@@ -16,6 +16,7 @@
 <script src="@Url.Content("~/scripts/board-autosave.js")"></script>
 <script src="@Url.Content("~/scripts/board-sorting.js")"></script>
 <script src="@Url.Content("~/scripts/board-list-deleteitem.js")"></script>
+<script src="@Url.Content("~/scripts/board-list-edititem.js")"></script>
 }
 
 @*
@@ -83,3 +84,19 @@ Main board interface
 		</div>
 	</div>
 </div>)
+
+@*
+Dialog for editing a list item
+*@
+
+<div class="sys-template board-list-edititem-dialog" sys:attach="dataview" width="400">
+	<div class="dialog-content">
+		<div sys:attach="content" content:template="form" content:data="{@@ Description }"></div>
+		<div sys:attach="content" content:template="form" content:data="{@@ DueDate }"></div>
+		<div sys:attach="content" content:template="form" content:data="{@@ Priority }"></div>
+	</div>
+	<div class="dialog-footer">
+		<input type="button" sys:command="ok" onclick="return false;" value="Ok" />
+		<input type="button" sys:command="cancel" onclick="return false;" value="Cancel" />
+	</div>
+</div>
