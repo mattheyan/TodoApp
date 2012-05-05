@@ -6,7 +6,7 @@ using ExoRule;
 
 namespace TodoApp.Models
 {
-	public class User
+	public class User : System.Security.Principal.IIdentity
 	{
 		public int Id { get; set; }
 
@@ -14,5 +14,20 @@ namespace TodoApp.Models
 		public string Name { get; set; }
 
 		public virtual ICollection<List> Lists { get; set; }
+
+		[Required]
+		public string OpenId { get; set; }
+
+		[NotMapped]
+		public string AuthenticationType
+		{
+			get { return "TodoApp"; }
+		}
+
+		[NotMapped]
+		public bool IsAuthenticated
+		{
+			get { return true; }
+		}
 	}
 }

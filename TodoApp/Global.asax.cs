@@ -9,6 +9,8 @@ using TodoApp.Models;
 using ExoModel;
 using System.Reflection;
 using ExoModel.EntityFramework;
+using System.Web.Security;
+using System.Security.Principal;
 
 namespace TodoApp
 {
@@ -26,7 +28,6 @@ namespace TodoApp
 				"{controller}/{action}/{id}", // URL with parameters
 				new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
 			);
-
 		}
 
 		protected void Application_Start()
@@ -60,6 +61,25 @@ namespace TodoApp
 				priority.Name = "Low";
 
 				TodoContext.Current.SaveChanges();
+			}
+		}
+
+		void Application_PostAuthenticateRequest(object sender, EventArgs e)
+		{
+			HttpCookie authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+			if (authCookie != null)
+			{
+				string encTicket = authCookie.Value;
+				if (!String.IsNullOrEmpty(encTicket))
+				{
+					FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(encTicket);
+
+					var user = TodoContext.Current.Users.Where(p => p.OpenId == ticket.UserData).First();
+
+					GenericPrincipal prin = new GenericPrincipal(user, null);
+
+					HttpContext.Current.User = prin;
+				}
 			}
 		}
 	}
