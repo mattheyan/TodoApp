@@ -122,7 +122,9 @@
     <Content Include="Content\loading.gif" />
     <Content Include="Content\low-priority.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\board-addlist.js" />
     <Content Include="Scripts\board-autosave.js" />
+    <Content Include="Scripts\board-deletelist.js" />
     <Content Include="Scripts\board-list-additem.js" />
     <Content Include="Scripts\board-list-deleteitem.js" />
     <Content Include="Scripts\board-list-edititem.js" />

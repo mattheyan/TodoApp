@@ -17,6 +17,8 @@
 <script src="@Url.Content("~/scripts/board-sorting.js")"></script>
 <script src="@Url.Content("~/scripts/board-list-deleteitem.js")"></script>
 <script src="@Url.Content("~/scripts/board-list-edititem.js")"></script>
+<script src="@Url.Content("~/scripts/board-addlist.js")"></script>
+<script src="@Url.Content("~/scripts/board-deletelist.js")"></script>
 }
 
 @*
@@ -30,6 +32,17 @@ Re-sequencing
 			onChangeOf: "Items",
 			execute: function(list) {
 				$transform(list.get_Items()).orderBy('Sequence').forEach(function(item, index) {
+					item.set_Sequence(index);
+				});
+			}
+		});
+	});
+
+	$extend("User", function() {
+		new ExoWeb.Model.Rule(User.meta, {
+			onChangeOf: "Lists",
+			execute: function(user) {
+				$transform(user.get_Lists()).orderBy('Sequence').forEach(function(item, index) {
 					item.set_Sequence(index);
 				});
 			}
@@ -94,6 +107,21 @@ Dialog for editing a list item
 		<div sys:attach="content" content:template="form" content:data="{@@ Description }"></div>
 		<div sys:attach="content" content:template="form" content:data="{@@ DueDate }"></div>
 		<div sys:attach="content" content:template="form" content:data="{@@ Priority }"></div>
+	</div>
+	<div class="dialog-footer">
+		<input type="button" sys:command="ok" onclick="return false;" value="Ok" />
+		<input type="button" sys:command="cancel" onclick="return false;" value="Cancel" />
+	</div>
+</div>
+
+@*
+Dialog for adding a list
+*@
+
+<div class="sys-template board-addlist-dialog" sys:attach="dataview">
+	<div class="dialog-content">
+		<div class="label">Name</div>
+		<div class="editor"><input type="text" /></div>
 	</div>
 	<div class="dialog-footer">
 		<input type="button" sys:command="ok" onclick="return false;" value="Ok" />
