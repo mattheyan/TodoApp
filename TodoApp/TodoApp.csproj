@@ -122,6 +122,7 @@
     <Content Include="Content\loading.gif" />
     <Content Include="Content\low-priority.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\board-list-additem.js" />
     <Content Include="Scripts\board-resize.js" />
     <Content Include="Scripts\board-styles.js" />
     <Content Include="Scripts\exoweb-jquery.dialog.js" />
