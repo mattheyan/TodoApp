@@ -7,3 +7,8 @@ TestResults
 
 # solution user settings
 *.suo
+*.user
+
+# SQL Server CE database file
+*.sdf
+
