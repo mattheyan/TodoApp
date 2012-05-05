@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ 
+ <UsingTask TaskName="Amender" AssemblyFile="$(ProjectDir)..\packages\Exo.1.0.0\tools\Afterthought.Amender.exe" />
+  <Target Name="AfterCompile">
+    <Amender TargetAssembly="@(IntermediateAssembly->'%(FullPath)')" AmendmentAssemblies="$(ProjectDir)..\packages\Exo.1.0.0\lib\ExoModel.EntityFramework.dll" ReferenceAssemblies="@(ReferencePath)" />
+  </Target>
+</Project>

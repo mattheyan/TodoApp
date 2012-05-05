@@ -34,6 +34,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ExoModel">
+      <HintPath>..\packages\Exo.1.0.0\lib\ExoModel.dll</HintPath>
+    </Reference>
+    <Reference Include="ExoModel.EntityFramework">
+      <HintPath>..\packages\Exo.1.0.0\lib\ExoModel.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ExoRule">
+      <HintPath>..\packages\Exo.1.0.0\lib\ExoRule.dll</HintPath>
+    </Reference>
+    <Reference Include="ExoRule.DataAnnotations">
+      <HintPath>..\packages\Exo.1.0.0\lib\ExoRule.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="ExoWeb">
+      <HintPath>..\packages\Exo.1.0.0\lib\ExoWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic">
+      <HintPath>..\packages\Exo.1.0.0\lib\Jurassic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -65,11 +88,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\exoweb-msajax.js" />
+    <Content Include="Scripts\exoweb-templates.htm" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjaxTemplates.debug.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -101,4 +131,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="C:\Users\matthewb\Code\Github\TodoApp\packages\Exo.1.0.0\tools\Exo.targets" />
 </Project>

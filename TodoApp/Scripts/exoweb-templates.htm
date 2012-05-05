@@ -1,0 +1,181 @@
+﻿<!-- readonly -->
+<span template:name="readonly" template:kind="@" class="sys-template" sys:attach="template">
+	{ binding displayValue }
+</span>
+
+<!-- readonly html -->
+<span template:name="readonly html" template:kind="@" class="sys-template" sys:attach="template">
+	<span sys:innerHTML="{ binding displayValue }"></span>
+</span>
+
+<!-- field as-radio, entity (radio button list, flow layout) -->
+<span template:name="field as-radio" template:kind="@" template:isreference="true" template:islist="false" class="sys-template" sys:attach="template">
+	<div class="sys-template" sys:attach="dataview" dataview:data="{ binding options }">
+		<label><input type="radio" id="option" sys:name="{{ $context.parentContext.getInstanceId('group') }}" sys:checked="{ binding selected }" /><span>{ binding displayValue, mode=oneTime }</span></label>
+		<div class="validation">{ binding firstError.message }</div>
+	</div>
+</span>
+
+<!-- field as-radio, entity (radio button list, vertical layout) -->
+<div template:name="field as-radio" template:kind="@" template:isreference="true" template:islist="false" class="sys-template" sys:attach="template">
+	<div class="sys-template" sys:attach="dataview" dataview:data="{ binding options }">
+		<p class="list"><label><input type="radio" id="option" sys:name="{{ $context.parentContext.getInstanceId('group') }}" sys:checked="{ binding selected }" /><span>{ binding displayValue, mode=oneTime }</span></label></p>
+		<div class="validation">{ binding firstError.message }</div>
+	</div>
+</div>
+
+<!-- field, entity (drop down list) -->
+<span template:name="field" template:kind="@" template:isreference="true" template:islist="false" class="sys-template" sys:attach="template">
+	<select class="sys-template" sys:value="{ binding systemValue }"
+		sys:attach="dataview" dataview:data="{ binding options }">
+		<option sys:if="{{ $index == 0 }}" value=""></option>
+		<option sys:if="{{ $dataItem.get_selected() }}" selected="selected" sys:value="{ binding systemValue, mode=oneTime }">{ binding displayValue, mode=oneTime }</option>
+		<option sys:if="{{ !$dataItem.get_selected() }}" sys:value="{ binding systemValue, mode=oneTime }">{ binding displayValue, mode=oneTime }</option>
+	</select>
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field, entity list (editable list with add/remove symantics) -->
+<span template:name="field selectedOnly" template:kind="@" template:isreference="true" template:islist="true" class="sys-template" sys:attach="template">
+	<div class='validation'></div>
+	<ul class="sys-template deletable" sys:attach="dataview" dataview:data="{~ options, transform=where('selected === true') }">
+		<li>
+			<span>{binding displayValue}</span>
+			<span class="delete" sys:onclick="{{ 'selectedOnlyDeselect(this,'+ $index +')' }}"></span>
+		</li>
+	</ul>
+	<select class="sys-template" sys:attach="dataview" dataview:data="{~ options, transform=where('selected === false') }" onchange="selectedOnlySelect(this)">
+		<option sys:if="{{ $index == 0 }}" value="">-- select --</option>
+		<option>{binding displayValue}</option>
+	</select>
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+<script type="text/javascript">
+	function selectedOnlyDeselect(element, index) {
+		var adapter = $parentContextData(element, null, 2);
+		var option = adapter.get_options()[index];
+		option.set_selected(false);
+	}
+	function selectedOnlySelect(element) {
+		if (element.selectedIndex > 0) {
+			var adapter = $parentContextData(element, null, null);
+			var option = $parentContextData(element.options[element.selectedIndex], null, null);
+			option.set_selected(true);
+			element.selectedIndex = 0;
+		}
+	}
+</script>
+
+<!-- field, entity list (check box list) -->
+<span template:name="field" template:kind="@" template:isreference="true" template:islist="true" class="sys-template" sys:attach="template">
+	<div class='validation'></div>
+	<div class="sys-template" sys:attach="dataview" dataview:data="{ binding options }">
+		<label><input type="checkbox" sys:checked="{ binding selected }" />
+		<span>{ binding displayValue, mode=oneTime }</span></label><br />
+	</div>
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field, boolean (check box) -->
+<span template:name="field" template:kind="@" template:datatype="Boolean" class="sys-template" sys:attach="template">
+	<input type='checkbox' sys:checked="{ binding rawValue }" />
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field time-only, date (time editor) -->
+<span template:name="field time-only" template:kind="@" template:datatype="Date" class="sys-template" sys:attach="template">
+	<input type='text' sys:value="{ binding displayValue }" />
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field, date (date picker) -->
+<span template:name="field" template:kind="@" template:datatype="Date" class="sys-template" sys:attach="template">
+	<input type='text' class='datepicker' sys:value="{ binding displayValue }" />
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field html, string (text area) -->
+<span template:name="field html" template:kind="@" template:datatype="String" class="sys-template" sys:attach="template">
+	<textarea sys:id="html1" sys:value="{ binding displayValue }"
+		sys:cols="{{ !!$dataItem.get_htmlCols ? $dataItem.get_htmlCols() : '' }}"
+		sys:rows="{{ !!$dataItem.get_htmlRows ? $dataItem.get_htmlRows() : '' }}"></textarea>
+	<div class="validation">{ binding firstError.message }</div>
+</span>																		
+
+<!-- field text, string (text area) -->
+<span template:name="field text" template:kind="@" template:datatype="String" class="sys-template" sys:attach="template">
+	<textarea sys:id="html1" sys:value="{ binding displayValue }"
+		sys:cols="{{ !!$dataItem.get_htmlCols ? $dataItem.get_htmlCols() : '' }}"
+		sys:rows="{{ !!$dataItem.get_htmlRows ? $dataItem.get_htmlRows() : '' }}"></textarea>
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field, string (text input) -->
+<span template:name="field" template:kind="@" class="sys-template" sys:attach="template" template:datatype="String" template:isreference="false" template:islist="false">
+	<input type='text' sys:value="{ binding displayValue }" sys:size="{{ ($dataItem.get_size) ? $dataItem.get_size() : '' }}" />
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field, string (text password) -->
+<span template:name="password" template:kind="@" class="sys-template" sys:attach="template" template:datatype="String" template:isreference="false" template:islist="false">
+	<input type='password' sys:value="{ binding displayValue }" sys:size="{{ ($dataItem.get_size) ? $dataItem.get_size() : '' }}" />
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- field, default (text input) -->
+<span template:name="field" template:kind="@" class="sys-template" sys:attach="template" template:isreference="false" template:islist="false">
+	<input type='text' sys:value="{ binding displayValue }" />
+	<div class="validation">{ binding firstError.message }</div>
+</span>
+
+<!-- form (div layout) -->
+<div template:name="form" template:kind="@" class="sys-template field" sys:attach="template">
+	<div class="label">{binding label}</div>
+	<div class="editor"><span sys:attach="content" content:template="field" content:data="{@ }"></span></div>
+</div>
+
+<!-- form (div layout password) -->
+<div template:name="password" template:kind="@" class="sys-template password" sys:attach="template">
+	<div class="label">{binding label}</div>
+	<div class="editor"><span sys:attach="content" content:template="password" content:data="{@ }"></span></div>
+</div>
+
+<!-- form (table layout) -->
+<table>
+	<tr template:name="form" template:kind="@" class="sys-template field" sys:attach="template">
+		<td class="label">{binding label}</td>
+		<td class="editor"><span sys:attach="content" content:template="field" content:data="{@ }"></span></td>
+	</tr>
+</table>
+
+<!-- grid -->
+<table>
+	<tr>
+		<!-- grid readonly html -->
+		<td template:name="grid readonly html" template:kind="@" class="sys-template field" sys:attach="template">
+			<span sys:innerHTML="{ binding displayValue }"></span>
+		</td>
+
+		<!-- grid readonly -->
+		<td template:name="grid readonly" template:kind="@" class="sys-template field" sys:attach="template">
+			<span sys:innerText="{ binding displayValue }"></span>
+		</td>
+
+		<!-- grid -->
+		<td template:name="grid" template:kind="@" class="sys-template field" sys:attach="template">
+			<span sys:attach="content" content:template="field" content:data="{@ }"></span>
+		</td>
+	</tr>
+</table>
+
+<!-- Add default validation display -->
+<style>
+	.validation-none
+	{
+		display: none;
+	}
+	.validation
+	{
+		color: Red;
+	}
+</style>
