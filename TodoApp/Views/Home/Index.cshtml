@@ -15,25 +15,34 @@
 }
 
 @*
+Exo-model declaration
+*@
+
+@ExoWeb.Model(new 
+{
+	user = Model.Include("Lists.Items", "Priority.All")
+})
+
+@*
 Main board interface
 *@
 
-<div class="board">
+@ExoWeb.Render(@<div class="sys-template board" sys:attach="dataview" dataview:data="{~ context.model.user, source=window }">
 	<div class="board-title">
-		<span class="board-user">User Name</span>
+		<span class="board-user">{# Name}</span>
 		<a class="board-addlist" href="#" onclick="return false;">Add a list..</a>
 	</div>
-	<div class="board-background">
+	<div class="sys-template board-background" sys:attach="dataview" dataview:data="{~ Lists, transform=orderBy('Sequence') }">
 		<div class="board-list">
 			<div class="board-list-title">
-				<strong>List Name</strong>
+				<strong>{# Name}</strong>
 				<span class="board-deletelist"></span>
 			</div>
-			<div class="board-list-content sortable">
-				<div sys:class="High">
+			<div class="sys-template board-list-content sortable" sys:attach="dataview" dataview:data="{~ Items, transform=orderBy('Sequence') }">
+				<div sys:class="{# Priority.Name}">
 					<div class="board-list-item">
 						<div class="board-list-item-text">
-							<span>Item Description</span>
+							<span>{# Description}</span>
 						</div>
 						<div class="board-list-item-age-description">Item Age Description (eg, one minute ago)</div>
 						<span class="board-list-item-priority"></span>
@@ -44,4 +53,4 @@ Main board interface
 				<a href="#" onclick="return false;">Add an item...</a></div>
 		</div>
 	</div>
-</div>
+</div>)
