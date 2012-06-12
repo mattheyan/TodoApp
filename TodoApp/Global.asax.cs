@@ -33,6 +33,10 @@ namespace TodoApp
 
 		protected void Application_Start()
 		{
+			var connection = ConfigurationManager.ConnectionStrings["TodoContext"];
+			if (!Database.Exists(connection.ConnectionString))
+				throw new ApplicationException("The application database does not exist: " + connection.ConnectionString.Substring(0, 25));
+
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterRoutes(RouteTable.Routes);

@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Afterthought">
+      <HintPath>..\packages\Exo.1.0.0\tools\Afterthought.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetOpenAuth">
       <HintPath>..\packages\DotNetOpenAuth.Ultimate.4.0.2.12119\lib\net40-full\DotNetOpenAuth.dll</HintPath>
     </Reference>
