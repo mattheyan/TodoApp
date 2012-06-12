@@ -43,6 +43,8 @@ namespace TodoApp
 
 			Database.SetInitializer<TodoContext>(new MigrateDatabaseToLatestVersion<TodoContext, Migrations.Configuration>());
 
+			new TodoContext();
+
 			new ModelContextProvider().CreateContext += (source, args) =>
 			{
 				Assembly coreAssembly = typeof(MvcApplication).Assembly;
