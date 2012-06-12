@@ -37,6 +37,8 @@ namespace TodoApp
 
 			RegisterRoutes(RouteTable.Routes);
 
+			//Database.SetInitializer<TodoContext>(new CreateDatabaseIfNotExists<TodoContext>());
+
 			new ModelContextProvider().CreateContext += (source, args) =>
 			{
 				Assembly coreAssembly = typeof(MvcApplication).Assembly;
