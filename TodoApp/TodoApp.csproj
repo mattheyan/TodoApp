@@ -89,6 +89,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201206120225151_InitialCreate.cs" />
+    <Compile Include="Migrations\201206120225151_InitialCreate.Designer.cs">
+      <DependentUpon>201206120225151_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\List.cs" />
     <Compile Include="Models\ListItem.cs" />
