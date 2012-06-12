@@ -11,6 +11,7 @@ using System.Reflection;
 using ExoModel.EntityFramework;
 using System.Web.Security;
 using System.Security.Principal;
+using System.Configuration;
 
 namespace TodoApp
 {
@@ -30,8 +31,22 @@ namespace TodoApp
 			);
 		}
 
+		private string ConnectionDescription(ConnectionStringSettings connection)
+		{
+			return connection.Name + " = " + connection.ConnectionString.Substring(0, 25);
+		}
+
+		private void FailWithConnectionStrings()
+		{
+			var error = @"Connection strings are not properly configured: " +
+				string.Join(",", ConfigurationManager.ConnectionStrings.Cast<ConnectionStringSettings>().Select(ConnectionDescription));
+			throw new ApplicationException(error);
+		}
+
 		protected void Application_Start()
 		{
+			FailWithConnectionStrings();
+
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterRoutes(RouteTable.Routes);
