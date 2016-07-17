@@ -12,3 +12,4 @@ TestResults
 # SQL Server CE database file
 *.sdf
 
+.vs/
