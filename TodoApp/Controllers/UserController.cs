@@ -90,7 +90,11 @@ namespace TodoApp.Controllers
 
 							// Create the new user
 							user = ModelContext.Create<User>();
-							user.Name = fetch.Attributes[WellKnownAttributes.Name.First].Values[0];
+							if (fetch.Attributes.Contains(WellKnownAttributes.Name.Alias))
+								user.Name = fetch.Attributes[WellKnownAttributes.Name.Alias].Values[0];
+							else
+								user.Name = fetch.Attributes[WellKnownAttributes.Name.First].Values[0];
+
 							user.OpenId = claimedIdentifier;
 
 							// Add a default list to the new user
